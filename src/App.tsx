@@ -9,6 +9,9 @@ import FilterBar from './components/FilterBar';
 import GoogleAuth, { UserProfile } from './components/GoogleAuth';
 import UserProfilePanel from './components/UserProfilePanel';
 import MarketingPackage from './components/MarketingPackage';
+import PremiumPricing, { PlanType } from './components/PremiumPricing';
+import PremiumBanner from './components/PremiumBanner';
+import UsageTracker, { canViewContract, trackContractView } from './components/UsageTracker';
 
 function App() {
   const [selectedContract, setSelectedContract] = useState<Contract | null>(null);
@@ -23,6 +26,8 @@ function App() {
   const [isScanning, setIsScanning] = useState(false);
   const [user, setUser] = useState<UserProfile | null>(null);
   const [stars, setStars] = useState<{ x: number; y: number; duration: number; delay: number }[]>([]);
+  const [currentPlan, setCurrentPlan] = useState<PlanType>('free');
+  const [showPremiumModal, setShowPremiumModal] = useState(false);
 
   // Generate stars for nebula background
   useEffect(() => {
@@ -114,6 +119,21 @@ function App() {
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>290 kommuner aktiva</span>
             </div>
+            {currentPlan === 'free' && (
+              <button
+                onClick={() => setShowPremiumModal(true)}
+                className="hidden sm:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 rounded-lg text-sm font-medium transition-all shadow-lg shadow-purple-500/20"
+              >
+                <span>✨</span>
+                <span>Pro</span>
+              </button>
+            )}
+            {currentPlan !== 'free' && (
+              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-400/30 rounded-lg">
+                <span className="text-sm">✨</span>
+                <span className="text-sm font-medium text-purple-300">{currentPlan === 'pro' ? 'Pro' : 'Enterprise'}</span>
+              </div>
+            )}
             <GoogleAuth
               user={user}
               onLogin={setUser}
@@ -132,6 +152,16 @@ function App() {
           totalValue={totalValue}
           totalContracts={contracts.length}
         />
+
+        {/* Premium Banner */}
+        {currentPlan === 'free' && (
+          <PremiumBanner currentPlan={currentPlan} onUpgrade={() => setShowPremiumModal(true)} variant="banner" />
+        )}
+
+        {/* Usage Tracker */}
+        {currentPlan === 'free' && (
+          <UsageTracker currentPlan={currentPlan} onUpgrade={() => setShowPremiumModal(true)} />
+        )}
 
         {/* Radar Animation */}
         <RadarAnimation isScanning={isScanning} />
@@ -235,7 +265,14 @@ function App() {
                   <ContractCard
                     key={contract.id}
                     contract={contract}
-                    onClick={() => setSelectedContract(contract)}
+                    onClick={() => {
+                      if (canViewContract(currentPlan)) {
+                        trackContractView();
+                        setSelectedContract(contract);
+                      } else {
+                        setShowPremiumModal(true);
+                      }
+                    }}
                     userMatchScore={user ? contract.matchScore : undefined}
                   />
                 ))
@@ -250,6 +287,41 @@ function App() {
           </>
         ) : activeTab === 'guide' ? (
           <GuideSection />
+        ) : currentPlan === 'free' ? (
+          <div className="glass-card rounded-xl p-8 text-center border-purple-500/20">
+            <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-500/20 to-blue-500/20 border border-purple-400/30 flex items-center justify-center">
+              <span className="text-4xl">🚀</span>
+            </div>
+            <h3 className="text-xl font-bold text-white mb-2">Marknadsföringspaket</h3>
+            <p className="text-gray-400 mb-6 max-w-md mx-auto">
+              Skapa professionellt marknadsföringsmaterial för dina genomförda kommunala projekt. 
+              Generera case studies, social media-innehåll, pressmeddelanden och mer.
+            </p>
+            <div className="grid md:grid-cols-3 gap-4 mb-6 max-w-2xl mx-auto">
+              <div className="bg-white/5 rounded-lg p-3 border border-white/5">
+                <div className="text-2xl mb-1">📄</div>
+                <div className="text-sm text-white font-medium">Case Studies</div>
+                <div className="text-xs text-gray-500">Professionella referenser</div>
+              </div>
+              <div className="bg-white/5 rounded-lg p-3 border border-white/5">
+                <div className="text-2xl mb-1">📱</div>
+                <div className="text-sm text-white font-medium">Social Media</div>
+                <div className="text-xs text-gray-500">Inlägg för alla plattformar</div>
+              </div>
+              <div className="bg-white/5 rounded-lg p-3 border border-white/5">
+                <div className="text-2xl mb-1">📰</div>
+                <div className="text-sm text-white font-medium">Pressmeddelanden</div>
+                <div className="text-xs text-gray-500">Redo för publicering</div>
+              </div>
+            </div>
+            <button
+              onClick={() => setShowPremiumModal(true)}
+              className="px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 rounded-lg font-medium text-white shadow-lg shadow-purple-500/20 transition-all"
+            >
+              Uppgradera till Pro — 299 kr/mån
+            </button>
+            <p className="text-xs text-gray-500 mt-3">Ingen bindningstid • Avsluta när du vill</p>
+          </div>
         ) : (
           <MarketingPackage contracts={contracts} />
         )}
@@ -260,6 +332,18 @@ function App() {
         <ContractModal
           contract={selectedContract}
           onClose={() => setSelectedContract(null)}
+        />
+      )}
+
+      {/* Premium Pricing Modal */}
+      {showPremiumModal && (
+        <PremiumPricing
+          currentPlan={currentPlan}
+          onPlanSelect={(plan) => {
+            setCurrentPlan(plan);
+            setShowPremiumModal(false);
+          }}
+          onClose={() => setShowPremiumModal(false)}
         />
       )}
 
