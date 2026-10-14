@@ -8,6 +8,7 @@ import StatsPanel from './components/StatsPanel';
 import FilterBar from './components/FilterBar';
 import GoogleAuth, { UserProfile } from './components/GoogleAuth';
 import UserProfilePanel from './components/UserProfilePanel';
+import MarketingPackage from './components/MarketingPackage';
 
 function App() {
   const [selectedContract, setSelectedContract] = useState<Contract | null>(null);
@@ -18,7 +19,7 @@ function App() {
   const [selectedValueRange, setSelectedValueRange] = useState(0);
   const [selectedTimeRange, setSelectedTimeRange] = useState(0);
   const [showAdvanced, setShowAdvanced] = useState(false);
-  const [activeTab, setActiveTab] = useState<'contracts' | 'guide'>('contracts');
+  const [activeTab, setActiveTab] = useState<'contracts' | 'guide' | 'marketing'>('contracts');
   const [isScanning, setIsScanning] = useState(false);
   const [user, setUser] = useState<UserProfile | null>(null);
   const [stars, setStars] = useState<{ x: number; y: number; duration: number; delay: number }[]>([]);
@@ -145,10 +146,10 @@ function App() {
         )}
 
         {/* Tab Navigation */}
-        <div className="flex gap-1 mb-6 bg-white/5 backdrop-blur-sm rounded-xl p-1 max-w-md border border-white/5">
+        <div className="flex gap-1 mb-6 bg-white/5 backdrop-blur-sm rounded-xl p-1 max-w-lg border border-white/5">
           <button
             onClick={() => setActiveTab('contracts')}
-            className={`flex-1 py-2.5 px-4 rounded-lg text-sm font-medium transition-all ${
+            className={`flex-1 py-2.5 px-3 rounded-lg text-sm font-medium transition-all ${
               activeTab === 'contracts'
                 ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg shadow-purple-500/20'
                 : 'text-gray-400 hover:text-white'
@@ -158,13 +159,23 @@ function App() {
           </button>
           <button
             onClick={() => setActiveTab('guide')}
-            className={`flex-1 py-2.5 px-4 rounded-lg text-sm font-medium transition-all ${
+            className={`flex-1 py-2.5 px-3 rounded-lg text-sm font-medium transition-all ${
               activeTab === 'guide'
                 ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg shadow-purple-500/20'
                 : 'text-gray-400 hover:text-white'
             }`}
           >
             📖 Guide
+          </button>
+          <button
+            onClick={() => setActiveTab('marketing')}
+            className={`flex-1 py-2.5 px-3 rounded-lg text-sm font-medium transition-all ${
+              activeTab === 'marketing'
+                ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg shadow-purple-500/20'
+                : 'text-gray-400 hover:text-white'
+            }`}
+          >
+            🚀 Marknadsföring
           </button>
         </div>
 
@@ -237,8 +248,10 @@ function App() {
               )}
             </div>
           </>
-        ) : (
+        ) : activeTab === 'guide' ? (
           <GuideSection />
+        ) : (
+          <MarketingPackage contracts={contracts} />
         )}
       </main>
 
