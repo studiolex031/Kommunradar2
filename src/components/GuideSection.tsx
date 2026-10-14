@@ -16,8 +16,8 @@ export default function GuideSection() {
   return (
     <div className="space-y-6">
       {/* Guide Header */}
-      <div className="bg-gradient-to-r from-emerald-950/50 to-gray-900/50 border border-emerald-800/30 rounded-xl p-6">
-        <h2 className="text-2xl font-bold text-white mb-2">Guide till kommunala kontrakt</h2>
+      <div className="glass-card rounded-xl p-6 border-purple-500/20">
+        <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-300 to-blue-300 bg-clip-text text-transparent mb-2">Guide till kommunala kontrakt</h2>
         <p className="text-gray-400 text-sm">
           Allt du behöver veta om rättigheter, villkor, behörighet och ansökningsprocesser för kommunala upphandlingar i Sverige.
         </p>
@@ -31,8 +31,8 @@ export default function GuideSection() {
             onClick={() => setActiveGuideTab(tab.id)}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
               activeGuideTab === tab.id
-                ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/20'
-                : 'bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700'
+                ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg shadow-purple-500/20'
+                : 'bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 border border-white/5'
             }`}
           >
             <span className="mr-1">{tab.icon}</span>
@@ -42,7 +42,7 @@ export default function GuideSection() {
       </div>
 
       {/* Guide Content */}
-      <div className="bg-gray-900/60 border border-gray-800 rounded-xl p-6">
+      <div className="glass-card rounded-xl p-6">
         {activeGuideTab === 'overview' && <OverviewContent />}
         {activeGuideTab === 'rights' && <RightsContent />}
         {activeGuideTab === 'conditions' && <ConditionsContent />}
@@ -58,30 +58,30 @@ function OverviewContent() {
     <div className="space-y-6">
       <h3 className="text-lg font-semibold text-white">Vad är kommunala kontrakt?</h3>
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="bg-gray-800/50 rounded-lg p-4">
-          <h4 className="text-emerald-400 font-medium mb-2">🏛️ Offentlig upphandling</h4>
+        <div className="bg-white/5 rounded-lg p-4 border border-white/5">
+          <h4 className="text-purple-300 font-medium mb-2">🏛️ Offentlig upphandling</h4>
           <p className="text-sm text-gray-300">
             Kommuner, landsting och statliga myndigheter måste upphandla varor, tjänster och byggentreprenader 
             enligt LOU (Lag om offentlig upphandling). Detta säkerställer transparens och likabehandling.
           </p>
         </div>
-        <div className="bg-gray-800/50 rounded-lg p-4">
-          <h4 className="text-emerald-400 font-medium mb-2">💰 Kontraktsvärden</h4>
+        <div className="bg-white/5 rounded-lg p-4 border border-white/5">
+          <h4 className="text-purple-300 font-medium mb-2">💰 Kontraktsvärden</h4>
           <p className="text-sm text-gray-300">
             Kommunala kontrakt i Sverige uppgår till över 800 miljarder SEK årligen. 
             Allt från byggprojekt och IT-tjänster till vård, skola och omsorg upphandlas öppet.
           </p>
         </div>
-        <div className="bg-gray-800/50 rounded-lg p-4">
-          <h4 className="text-emerald-400 font-medium mb-2">📊 Upphandlingsmetoder</h4>
+        <div className="bg-white/5 rounded-lg p-4 border border-white/5">
+          <h4 className="text-purple-300 font-medium mb-2">📊 Upphandlingsmetoder</h4>
           <p className="text-sm text-gray-300">
             <strong>Öppet förfarande:</strong> Alla intresserade kan lämna anbud.<br/>
             <strong>Selektivt förfarande:</strong> Endast utvalda leverantörer bjuds in.<br/>
             <strong>Direktupphandling:</strong> Under tröskelvärdet (ca 700 000 SEK).
           </p>
         </div>
-        <div className="bg-gray-800/50 rounded-lg p-4">
-          <h4 className="text-emerald-400 font-medium mb-2">🔍 Var hittar man kontrakt?</h4>
+        <div className="bg-white/5 rounded-lg p-4 border border-white/5">
+          <h4 className="text-purple-300 font-medium mb-2">🔍 Var hittar man kontrakt?</h4>
           <p className="text-sm text-gray-300">
             <strong>TED</strong> (Tenders Electronic Daily) — EU:s upphandlingsportal<br/>
             <strong>Doffy</strong> — Svenskt upphandlingsverktyg<br/>
@@ -91,8 +91,8 @@ function OverviewContent() {
         </div>
       </div>
       
-      <div className="bg-emerald-950/30 border border-emerald-800/30 rounded-lg p-4">
-        <h4 className="text-emerald-400 font-medium mb-2">💡 Tips från Kommunradar</h4>
+      <div className="bg-purple-950/30 border border-purple-800/30 rounded-lg p-4">
+        <h4 className="text-purple-300 font-medium mb-2">💡 Tips från Kommunradar</h4>
         <ul className="text-sm text-gray-300 space-y-1">
           <li>• Övervakar kontinuerligt nya upphandlingar från 290 kommuner</li>
           <li>• Matchar kontrakt mot din profil och behörighet</li>
@@ -113,7 +113,7 @@ function RightsContent() {
       </p>
       
       <div className="space-y-4">
-        <div className="border-l-4 border-emerald-500 pl-4">
+        <div className="border-l-4 border-purple-500 pl-4">
           <h4 className="text-white font-medium">Rätt till likabehandling</h4>
           <p className="text-sm text-gray-300 mt-1">
             Alla leverantörer ska behandlas lika utan diskriminering. Upphandlingen ska vara transparent 
@@ -129,7 +129,7 @@ function RightsContent() {
           </p>
         </div>
         
-        <div className="border-l-4 border-purple-500 pl-4">
+        <div className="border-l-4 border-pink-500 pl-4">
           <h4 className="text-white font-medium">Rätt till betalning</h4>
           <p className="text-sm text-gray-300 mt-1">
             Enligt LOU ska betalning ske inom 30 dagar. Faktureringsrutiner och betalningsvillkor 
@@ -183,7 +183,7 @@ function ConditionsContent() {
       </p>
       
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
+        <div className="bg-white/5 rounded-lg p-4 border border-white/5">
           <h4 className="text-white font-medium mb-2">💼 Arbetsrättsliga villkor</h4>
           <ul className="text-sm text-gray-300 space-y-1">
             <li>• Kollektivavtal krävs ofta</li>
@@ -194,7 +194,7 @@ function ConditionsContent() {
           </ul>
         </div>
         
-        <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
+        <div className="bg-white/5 rounded-lg p-4 border border-white/5">
           <h4 className="text-white font-medium mb-2">🌱 Miljökrav</h4>
           <ul className="text-sm text-gray-300 space-y-1">
             <li>• Miljöledningssystem (ISO 14001)</li>
@@ -205,7 +205,7 @@ function ConditionsContent() {
           </ul>
         </div>
         
-        <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
+        <div className="bg-white/5 rounded-lg p-4 border border-white/5">
           <h4 className="text-white font-medium mb-2">📊 Ekonomiska villkor</h4>
           <ul className="text-sm text-gray-300 space-y-1">
             <li>• Godkänd ekonomisk ställning</li>
@@ -216,7 +216,7 @@ function ConditionsContent() {
           </ul>
         </div>
         
-        <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
+        <div className="bg-white/5 rounded-lg p-4 border border-white/5">
           <h4 className="text-white font-medium mb-2">🔒 Sekretess & GDPR</h4>
           <ul className="text-sm text-gray-300 space-y-1">
             <li>• Dataskyddsförordningen (GDPR)</li>
@@ -227,7 +227,7 @@ function ConditionsContent() {
           </ul>
         </div>
         
-        <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
+        <div className="bg-white/5 rounded-lg p-4 border border-white/5">
           <h4 className="text-white font-medium mb-2">📋 Rapportering & Uppföljning</h4>
           <ul className="text-sm text-gray-300 space-y-1">
             <li>• Periodiska statusrapporter</li>
@@ -238,7 +238,7 @@ function ConditionsContent() {
           </ul>
         </div>
         
-        <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
+        <div className="bg-white/5 rounded-lg p-4 border border-white/5">
           <h4 className="text-white font-medium mb-2">⏰ Tidsvillkor</h4>
           <ul className="text-sm text-gray-300 space-y-1">
             <li>• Leveranstider och milstolpar</li>
@@ -262,8 +262,8 @@ function EligibleContent() {
       </p>
       
       <div className="space-y-4">
-        <div className="bg-emerald-950/30 border border-emerald-800/30 rounded-lg p-4">
-          <h4 className="text-emerald-400 font-medium mb-3">✅ Grundläggande behörighetskrav</h4>
+        <div className="bg-purple-950/30 border border-purple-800/30 rounded-lg p-4">
+          <h4 className="text-purple-300 font-medium mb-3">✅ Grundläggande behörighetskrav</h4>
           <ul className="text-sm text-gray-300 space-y-2">
             <li className="flex items-start gap-2">
               <span className="text-emerald-400">✓</span>
@@ -289,21 +289,21 @@ function EligibleContent() {
         </div>
         
         <div className="bg-blue-950/30 border border-blue-800/30 rounded-lg p-4">
-          <h4 className="text-blue-400 font-medium mb-3">🏢 Olika typer av sökande</h4>
+          <h4 className="text-blue-300 font-medium mb-3">🏢 Olika typer av sökande</h4>
           <div className="grid md:grid-cols-2 gap-3">
-            <div className="bg-gray-800/30 rounded-lg p-3">
+            <div className="bg-white/3 rounded-lg p-3 border border-white/5">
               <h5 className="text-white text-sm font-medium">Stora företag</h5>
               <p className="text-xs text-gray-400 mt-1">Omsättningskrav, referensprojekt, certifieringar. Kan delta i alla upphandlingar.</p>
             </div>
-            <div className="bg-gray-800/30 rounded-lg p-3">
+            <div className="bg-white/3 rounded-lg p-3 border border-white/5">
               <h5 className="text-white text-sm font-medium">Små och medelstora företag</h5>
               <p className="text-xs text-gray-400 mt-1">Uppmuntras att delta. Delade kontrakt och lägre krav kan underlätta.</p>
             </div>
-            <div className="bg-gray-800/30 rounded-lg p-3">
+            <div className="bg-white/3 rounded-lg p-3 border border-white/5">
               <h5 className="text-white text-sm font-medium">Ideella organisationer</h5>
               <p className="text-xs text-gray-400 mt-1">Kan delta inom vård, omsorg och sociala tjänster. Särskilda regler för idéburna aktörer.</p>
             </div>
-            <div className="bg-gray-800/30 rounded-lg p-3">
+            <div className="bg-white/3 rounded-lg p-3 border border-white/5">
               <h5 className="text-white text-sm font-medium">Utländska företag</h5>
               <p className="text-xs text-gray-400 mt-1">EU-företag har samma rättigheter. Krav på svensk momsregistrering och F-skatt.</p>
             </div>
@@ -349,132 +349,44 @@ function ProcessContent() {
       </p>
       
       <div className="space-y-4">
-        {/* Step 1 */}
-        <div className="flex gap-4">
-          <div className="flex flex-col items-center">
-            <div className="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold">1</div>
-            <div className="w-0.5 h-full bg-gray-700 mt-2"></div>
-          </div>
-          <div className="flex-1 pb-4">
-            <h4 className="text-white font-medium">Registrera dig på upphandlingsportaler</h4>
-            <p className="text-sm text-gray-300 mt-1">
-              Skapa konton på de viktigaste portalerna: Doffy, Mercell, Visma TendSign och TED. 
-              Ställ in bevakningar för din bransch och geografiska område.
-            </p>
-            <div className="mt-2 flex flex-wrap gap-2">
-              <span className="text-xs bg-gray-800 px-2 py-1 rounded text-gray-400">Doffy.se</span>
-              <span className="text-xs bg-gray-800 px-2 py-1 rounded text-gray-400">Mercell.com</span>
-              <span className="text-xs bg-gray-800 px-2 py-1 rounded text-gray-400">TendSign.com</span>
-              <span className="text-xs bg-gray-800 px-2 py-1 rounded text-gray-400">TED.europa.eu</span>
+        {[
+          { title: 'Registrera dig på upphandlingsportaler', desc: 'Skapa konton på de viktigaste portalerna: Doffy, Mercell, Visma TendSign och TED. Ställ in bevakningar för din bransch och geografiska område.', tags: ['Doffy.se', 'Mercell.com', 'TendSign.com', 'TED.europa.eu'] },
+          { title: 'Ladda ner förfrågningsunderlag', desc: 'När du hittar ett relevant kontrakt, ladda ner hela förfrågningsunderlaget. Läs igenom kravspecifikationen, utvärderingsmodellen och avtalsvillkoren noggrant.' },
+          { title: 'Ställ frågor (om tillåtet)', desc: 'Du har rätt att ställa frågor om förfrågningsunderlaget. Frågorna och svaren publiceras anonymt och delas med alla anbudsgivare.' },
+          { title: 'Sammanställ ditt anbud', desc: 'Förbered ett komplett anbud som svarar på alla krav. Inkludera administrativa uppgifter, teknisk beskrivning, prisanbud, referenser och certifieringar.' },
+          { title: 'Lämna in anbudet i tid', desc: 'Lämna in anbudet via angiven metod innan deadline. Sena anbud avvisas automatiskt. Spara kvittens på inlämning.' },
+          { title: 'Vänta på utvärdering och beslut', desc: 'Kommunen utvärderar alla anbud enligt angiven modell (lägsta pris eller MEPRIN). Du kan bli ombedd att förtydliga ditt anbud.' },
+          { title: 'Tilldelning och avtal', desc: 'Vid tilldelning meddelas alla anbudsgivare. Efter avtalsspärr (10 dagar) tecknas kontraktet.' },
+        ].map((step, idx) => (
+          <div key={idx} className="flex gap-4">
+            <div className="flex flex-col items-center">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold shrink-0">{idx + 1}</div>
+              {idx < 6 && <div className="w-0.5 h-full bg-gradient-to-b from-purple-500/30 to-transparent mt-2"></div>}
+            </div>
+            <div className="flex-1 pb-4">
+              <h4 className="text-white font-medium">{step.title}</h4>
+              <p className="text-sm text-gray-300 mt-1">{step.desc}</p>
+              {'tags' in step && step.tags && (
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {step.tags.map(tag => (
+                    <span key={tag} className="text-xs bg-white/5 px-2 py-1 rounded text-gray-400 border border-white/5">{tag}</span>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
-        </div>
-        
-        {/* Step 2 */}
-        <div className="flex gap-4">
-          <div className="flex flex-col items-center">
-            <div className="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold">2</div>
-            <div className="w-0.5 h-full bg-gray-700 mt-2"></div>
-          </div>
-          <div className="flex-1 pb-4">
-            <h4 className="text-white font-medium">Ladda ner förfrågningsunderlag</h4>
-            <p className="text-sm text-gray-300 mt-1">
-              När du hittar ett relevant kontrakt, ladda ner hela förfrågningsunderlaget. 
-              Läs igenom kravspecifikationen, utvärderingsmodellen och avtalsvillkoren noggrant.
-            </p>
-          </div>
-        </div>
-        
-        {/* Step 3 */}
-        <div className="flex gap-4">
-          <div className="flex flex-col items-center">
-            <div className="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold">3</div>
-            <div className="w-0.5 h-full bg-gray-700 mt-2"></div>
-          </div>
-          <div className="flex-1 pb-4">
-            <h4 className="text-white font-medium">Ställ frågor (om tillåtet)</h4>
-            <p className="text-sm text-gray-300 mt-1">
-              Du har rätt att ställa frågor om förfrågningsunderlaget. Frågorna och svaren publiceras 
-              anonymt och delas med alla anbudsgivare. Sista dag för frågor anges i underlaget.
-            </p>
-          </div>
-        </div>
-        
-        {/* Step 4 */}
-        <div className="flex gap-4">
-          <div className="flex flex-col items-center">
-            <div className="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold">4</div>
-            <div className="w-0.5 h-full bg-gray-700 mt-2"></div>
-          </div>
-          <div className="flex-1 pb-4">
-            <h4 className="text-white font-medium">Sammanställ ditt anbud</h4>
-            <p className="text-sm text-gray-300 mt-1">
-              Förbered ett komplett anbud som svarar på alla krav. Inkludera:
-            </p>
-            <ul className="text-sm text-gray-400 mt-2 space-y-1">
-              <li>• Administrativa uppgifter (företagsinformation, underskrifter)</li>
-              <li>• Teknisk beskrivning av lösning/tjänst</li>
-              <li>• Prisanbud (enligt angivet format)</li>
-              <li>• Referenser och meritförteckning</li>
-              <li>• Intyg och certifieringar</li>
-            </ul>
-          </div>
-        </div>
-        
-        {/* Step 5 */}
-        <div className="flex gap-4">
-          <div className="flex flex-col items-center">
-            <div className="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold">5</div>
-            <div className="w-0.5 h-full bg-gray-700 mt-2"></div>
-          </div>
-          <div className="flex-1 pb-4">
-            <h4 className="text-white font-medium">Lämna in anbudet i tid</h4>
-            <p className="text-sm text-gray-300 mt-1">
-              Lämna in anbudet via angiven metod (digitalt eller fysiskt) <strong>innan deadline</strong>. 
-              Sena anbud avvisas automatiskt. Spara kvittens på inlämning.
-            </p>
-          </div>
-        </div>
-        
-        {/* Step 6 */}
-        <div className="flex gap-4">
-          <div className="flex flex-col items-center">
-            <div className="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold">6</div>
-            <div className="w-0.5 h-full bg-gray-700 mt-2"></div>
-          </div>
-          <div className="flex-1 pb-4">
-            <h4 className="text-white font-medium">Vänta på utvärdering och beslut</h4>
-            <p className="text-sm text-gray-300 mt-1">
-              Kommunen utvärderar alla anbud enligt angiven modell (lägsta pris eller MEPRIN - 
-              mest ekonomiskt fördelaktigt). Du kan bli ombedd att förtydliga ditt anbud.
-            </p>
-          </div>
-        </div>
-        
-        {/* Step 7 */}
-        <div className="flex gap-4">
-          <div className="flex flex-col items-center">
-            <div className="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold">7</div>
-          </div>
-          <div className="flex-1">
-            <h4 className="text-white font-medium">Tilldelning och avtal</h4>
-            <p className="text-sm text-gray-300 mt-1">
-              Vid tilldelning meddelas alla anbudsgivare. Efter avtalsspärr (10 dagar) tecknas kontraktet. 
-              Om du inte vann kan du begära överprövning eller avbegära utvärderingsunderlaget för att lära dig.
-            </p>
-          </div>
-        </div>
+        ))}
       </div>
       
-      <div className="bg-emerald-950/30 border border-emerald-800/30 rounded-lg p-4 mt-6">
-        <h4 className="text-emerald-400 font-medium mb-2">💡 Proffstips</h4>
+      <div className="bg-purple-950/30 border border-purple-800/30 rounded-lg p-4 mt-6">
+        <h4 className="text-purple-300 font-medium mb-2">💡 Proffstips</h4>
         <ul className="text-sm text-gray-300 space-y-1">
           <li>• Börja i god tid - räkna med minst 2-3 veckor för ett komplett anbud</li>
           <li>• Läs utvärderingsmodellen noga - anpassa ditt anbud efter vad som värderas högst</li>
           <li>• Använd kommunens egna formulär och mallar exakt som angivet</li>
           <li>• Be en kollega granska anbudet innan inlämning</li>
           <li>• Spara alla versioner och dokumentation</li>
-          <li>• Vid förlust - begär always utvärderingsprotokollet för lärande</li>
+          <li>• Vid förlust - begär alltid utvärderingsprotokollet för lärande</li>
         </ul>
       </div>
     </div>

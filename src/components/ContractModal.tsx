@@ -9,11 +9,11 @@ export default function ContractModal({ contract, onClose }: Props) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={onClose}>
       <div
-        className="bg-gray-900 border border-gray-700 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+        className="bg-[#1a1035] border border-purple-500/20 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl shadow-purple-500/10"
         onClick={e => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="sticky top-0 bg-gray-900 border-b border-gray-800 p-6 flex items-start justify-between z-10">
+        <div className="sticky top-0 bg-[#1a1035]/95 backdrop-blur-sm border-b border-white/5 p-6 flex items-start justify-between z-10">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className={`px-2 py-0.5 rounded-full text-xs border ${
@@ -28,7 +28,7 @@ export default function ContractModal({ contract, onClose }: Props) {
             <h2 className="text-xl font-bold text-white">{contract.title}</h2>
             <p className="text-sm text-gray-400 mt-1">{contract.municipality} • {contract.region}</p>
           </div>
-          <button onClick={onClose} className="text-gray-400 hover:text-white p-2 rounded-lg hover:bg-gray-800 transition-colors">
+          <button onClick={onClose} className="text-gray-400 hover:text-white p-2 rounded-lg hover:bg-white/5 transition-colors">
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -38,19 +38,19 @@ export default function ContractModal({ contract, onClose }: Props) {
         <div className="p-6 space-y-6">
           {/* Key info */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-gray-800/50 rounded-lg p-3 text-center">
-              <div className="text-emerald-400 font-bold text-lg">{contract.value}</div>
+            <div className="bg-white/5 rounded-lg p-3 text-center border border-white/5">
+              <div className="bg-gradient-to-r from-purple-400 to-blue-400 font-bold text-lg bg-clip-text text-transparent">{contract.value}</div>
               <div className="text-xs text-gray-500">Värde</div>
             </div>
-            <div className="bg-gray-800/50 rounded-lg p-3 text-center">
+            <div className="bg-white/5 rounded-lg p-3 text-center border border-white/5">
               <div className="text-white font-bold text-lg">{contract.deadline}</div>
               <div className="text-xs text-gray-500">Deadline</div>
             </div>
-            <div className="bg-gray-800/50 rounded-lg p-3 text-center">
+            <div className="bg-white/5 rounded-lg p-3 text-center border border-white/5">
               <div className="text-white font-bold text-lg">{contract.estimatedDuration}</div>
               <div className="text-xs text-gray-500">Varaktighet</div>
             </div>
-            <div className="bg-gray-800/50 rounded-lg p-3 text-center">
+            <div className="bg-white/5 rounded-lg p-3 text-center border border-white/5">
               <div className="text-white font-bold text-lg">{contract.category}</div>
               <div className="text-xs text-gray-500">Kategori</div>
             </div>
@@ -58,17 +58,17 @@ export default function ContractModal({ contract, onClose }: Props) {
 
           {/* Description */}
           <div>
-            <h3 className="text-sm font-semibold text-emerald-400 uppercase tracking-wide mb-2">Beskrivning</h3>
+            <h3 className="text-sm font-semibold text-purple-300 uppercase tracking-wide mb-2">Beskrivning</h3>
             <p className="text-gray-300 text-sm leading-relaxed">{contract.description}</p>
           </div>
 
           {/* Requirements */}
           <div>
-            <h3 className="text-sm font-semibold text-emerald-400 uppercase tracking-wide mb-2">📋 Krav</h3>
+            <h3 className="text-sm font-semibold text-purple-300 uppercase tracking-wide mb-2">📋 Krav</h3>
             <ul className="space-y-1.5">
               {contract.requirements.map((req, idx) => (
                 <li key={idx} className="flex items-start gap-2 text-sm text-gray-300">
-                  <span className="text-emerald-500 mt-0.5">✓</span>
+                  <span className="text-emerald-400 mt-0.5">✓</span>
                   {req}
                 </li>
               ))}
@@ -77,7 +77,7 @@ export default function ContractModal({ contract, onClose }: Props) {
 
           {/* Rights */}
           <div>
-            <h3 className="text-sm font-semibold text-emerald-400 uppercase tracking-wide mb-2">⚖️ Rättigheter</h3>
+            <h3 className="text-sm font-semibold text-purple-300 uppercase tracking-wide mb-2">⚖️ Rättigheter</h3>
             <ul className="space-y-1.5">
               {contract.rights.map((right, idx) => (
                 <li key={idx} className="flex items-start gap-2 text-sm text-gray-300">
@@ -90,7 +90,7 @@ export default function ContractModal({ contract, onClose }: Props) {
 
           {/* Conditions */}
           <div>
-            <h3 className="text-sm font-semibold text-emerald-400 uppercase tracking-wide mb-2">📜 Villkor</h3>
+            <h3 className="text-sm font-semibold text-purple-300 uppercase tracking-wide mb-2">📜 Villkor</h3>
             <ul className="space-y-1.5">
               {contract.conditions.map((condition, idx) => (
                 <li key={idx} className="flex items-start gap-2 text-sm text-gray-300">
@@ -102,12 +102,12 @@ export default function ContractModal({ contract, onClose }: Props) {
           </div>
 
           {/* Eligible Applicants */}
-          <div className="bg-emerald-950/30 border border-emerald-800/30 rounded-xl p-4">
-            <h3 className="text-sm font-semibold text-emerald-400 uppercase tracking-wide mb-2">👤 Vem kan söka?</h3>
+          <div className="bg-purple-950/30 border border-purple-800/30 rounded-xl p-4">
+            <h3 className="text-sm font-semibold text-purple-300 uppercase tracking-wide mb-2">👤 Vem kan söka?</h3>
             <ul className="space-y-1.5">
               {contract.eligibleApplicants.map((applicant, idx) => (
                 <li key={idx} className="flex items-start gap-2 text-sm text-gray-300">
-                  <span className="text-emerald-400 mt-0.5">→</span>
+                  <span className="text-purple-400 mt-0.5">→</span>
                   {applicant}
                 </li>
               ))}
@@ -115,13 +115,13 @@ export default function ContractModal({ contract, onClose }: Props) {
           </div>
 
           {/* Application Process */}
-          <div className="bg-gray-800/30 border border-gray-700 rounded-xl p-4">
-            <h3 className="text-sm font-semibold text-emerald-400 uppercase tracking-wide mb-3">📝 Ansökningsprocess</h3>
+          <div className="bg-white/3 border border-white/5 rounded-xl p-4">
+            <h3 className="text-sm font-semibold text-purple-300 uppercase tracking-wide mb-3">📝 Ansökningsprocess</h3>
             <div className="space-y-3">
               {contract.applicationProcess.map((step, idx) => (
                 <div key={idx} className="flex items-start gap-3">
-                  <div className="w-7 h-7 rounded-full bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center shrink-0">
-                    <span className="text-xs font-bold text-emerald-400">{idx + 1}</span>
+                  <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-500/20 to-blue-500/20 border border-purple-400/30 flex items-center justify-center shrink-0">
+                    <span className="text-xs font-bold text-purple-300">{idx + 1}</span>
                   </div>
                   <p className="text-sm text-gray-300 pt-1">{step}</p>
                 </div>
@@ -130,8 +130,8 @@ export default function ContractModal({ contract, onClose }: Props) {
           </div>
 
           {/* Contact */}
-          <div className="border-t border-gray-800 pt-4">
-            <h3 className="text-sm font-semibold text-emerald-400 uppercase tracking-wide mb-2">📞 Kontakt</h3>
+          <div className="border-t border-white/5 pt-4">
+            <h3 className="text-sm font-semibold text-purple-300 uppercase tracking-wide mb-2">📞 Kontakt</h3>
             <div className="flex flex-col sm:flex-row gap-4 text-sm">
               <div>
                 <span className="text-gray-500">Kontaktperson: </span>
@@ -139,7 +139,7 @@ export default function ContractModal({ contract, onClose }: Props) {
               </div>
               <div>
                 <span className="text-gray-500">E-post: </span>
-                <span className="text-emerald-400">{contract.contactEmail}</span>
+                <span className="text-purple-400">{contract.contactEmail}</span>
               </div>
             </div>
           </div>
