@@ -1,0 +1,129 @@
+/*
+ * Kommunradar.online – alternativ design (undersidan /alternativ)
+ * ALLT här är avgränsat till klassen .kr-brand, som bara sätts på <html> när
+ * den alternativa designen visas. Originaldesignen påverkas inte.
+ */
+@import "../styles/brand-tokens.css";
+
+.kr-brand {
+  --background: 216 100% 98%;
+  --foreground: 215 67% 19%;
+  --card: 0 0% 100%;
+  --card-foreground: 215 67% 19%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 215 67% 19%;
+  --primary: 208 94% 38%;            /* #0668BE – AA mot vit text */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 211 100% 96%;         /* --kr-ice */
+  --secondary-foreground: 216 73% 16%;
+  --muted: 212 62% 96%;
+  --muted-foreground: 216 26% 39%;   /* #4A5F7E */
+  --accent: 211 100% 96%;
+  --accent-foreground: 216 73% 16%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 213 61% 90%;
+  --input: 213 61% 90%;
+  --ring: 208 93% 46%;               /* --kr-blue */
+  --sidebar-background: 0 0% 100%;
+  --sidebar-foreground: 215 67% 19%;
+  --sidebar-primary: 208 94% 38%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 211 100% 96%;
+  --sidebar-accent-foreground: 216 73% 16%;
+  --sidebar-border: 213 61% 90%;
+  --sidebar-ring: 208 93% 46%;
+  font-family: var(--kr-font-web);
+  -webkit-font-smoothing: antialiased;
+}
+.kr-brand body { font-family: var(--kr-font-web); }
+.kr-brand ::selection { background: rgb(var(--kr-yellow-rgb) / 0.45); color: var(--kr-navy); }
+.kr-brand a:focus-visible,
+.kr-brand button:focus-visible,
+.kr-brand [role="button"]:focus-visible {
+  outline: 2px solid var(--kr-blue);
+  outline-offset: 2px;
+}
+.kr-brand .tender-card:hover {
+  border-color: rgb(var(--kr-blue-rgb) / 0.35);
+  box-shadow: 0 10px 25px -5px rgb(var(--kr-navy-rgb) / 0.12), 0 4px 6px -2px rgb(var(--kr-blue-rgb) / 0.06);
+}
+.kr-brand .municipality-dot.active { box-shadow: 0 0 0 3px rgb(var(--kr-yellow-rgb) / 0.6); }
+/* Sparad upphandling: gul fyllning med marinblå kontur */
+.kr-brand .text-amber-500 svg { fill: var(--kr-yellow); }
+
+/* Diagram (Recharts) – originalfärger ersätts med varumärkespaletten */
+.kr-brand [fill="#0284C7"], .kr-brand [stroke="#0284C7"] { fill: var(--kr-blue); }
+.kr-brand [stroke="#0284C7"] { stroke: var(--kr-blue); }
+.kr-brand [stroke="#0284C7"][fill="none"] { fill: none; }
+.kr-brand [stop-color="#0284C7"] { stop-color: var(--kr-blue); }
+.kr-brand [fill="#10B981"] { fill: var(--kr-teal); }
+.kr-brand [stroke="#10B981"] { stroke: var(--kr-teal); }
+.kr-brand [stop-color="#10B981"] { stop-color: var(--kr-teal); }
+.kr-brand [fill="#F59E0B"] { fill: var(--kr-yellow); }
+.kr-brand [fill="#8B5CF6"] { fill: var(--kr-cyan); }
+.kr-brand [fill="#EF4444"] { fill: var(--kr-navy); }
+.kr-brand .recharts-legend-item [fill="#0284C7"] { fill: var(--kr-blue); }
+
+/* Hårdkodade Tailwind-färger i delade sidor → varumärkesfärger */
+.kr-brand .bg-amber-100 { background-color: rgb(255 201 40 / 0.25); }
+.kr-brand .bg-blue-100 { background-color: rgb(8 127 229 / 0.1); }
+.kr-brand .bg-emerald-100 { background-color: rgb(18 191 175 / 0.15); }
+.kr-brand .bg-emerald-500 { background-color: rgb(18 191 175 / 1); }
+.kr-brand .bg-gray-100 { background-color: rgb(245 249 255 / 1); }
+.kr-brand .bg-sky-100 { background-color: rgb(8 127 229 / 0.1); }
+.kr-brand .bg-sky-50 { background-color: rgb(234 244 255 / 1); }
+.kr-brand .bg-sky-600 { background-color: rgb(11 35 72 / 1); }
+.kr-brand .bg-slate-100 { background-color: rgb(11 35 72 / 0.06); }
+.kr-brand .bg-slate-200 { background-color: rgb(8 127 229 / 0.1); }
+.kr-brand .bg-slate-300 { background-color: rgb(16 43 80 / 0.25); }
+.kr-brand .bg-slate-50 { background-color: rgb(234 244 255 / 0.6); }
+.kr-brand .bg-slate-900 { background-color: rgb(11 35 72 / 1); }
+.kr-brand .bg-violet-100 { background-color: rgb(32 185 232 / 0.15); }
+.kr-brand .border-sky-100 { border-color: rgb(8 127 229 / 0.15); }
+.kr-brand .border-sky-200 { border-color: rgb(8 127 229 / 0.25); }
+.kr-brand .from-sky-50 { --tw-gradient-from: rgb(234 244 255 / 1) var(--tw-gradient-from-position); --tw-gradient-to: rgb(234 244 255 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.kr-brand .from-sky-500 { --tw-gradient-from: rgb(32 185 232 / 1) var(--tw-gradient-from-position); --tw-gradient-to: rgb(32 185 232 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.kr-brand .from-slate-50 { --tw-gradient-from: rgb(255 255 255 / 1) var(--tw-gradient-from-position); --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.kr-brand .hover\:bg-sky-600:hover { background-color: rgb(11 35 72 / 1); }
+.kr-brand .hover\:bg-slate-100:hover { background-color: rgb(11 35 72 / 0.06); }
+.kr-brand .hover\:bg-slate-400:hover { background-color: rgb(16 43 80 / 0.4); }
+.kr-brand .hover\:text-blue-700:hover { color: rgb(11 35 72 / 1); }
+.kr-brand .shadow-sky-200 { --tw-shadow-color: rgb(8 127 229 / 0.2); --tw-shadow: var(--tw-shadow-colored); }
+.kr-brand .text-amber-500 { color: rgb(11 35 72 / 1); }
+.kr-brand .text-amber-600 { color: rgb(122 86 0 / 1); }
+.kr-brand .text-amber-700 { color: rgb(122 86 0 / 1); }
+.kr-brand .text-blue-500 { color: rgb(6 104 190 / 1); }
+.kr-brand .text-blue-700 { color: rgb(11 35 72 / 1); }
+.kr-brand .text-emerald-600 { color: rgb(10 122 112 / 1); }
+.kr-brand .text-emerald-700 { color: rgb(10 122 112 / 1); }
+.kr-brand .text-gray-600 { color: rgb(74 95 126 / 1); }
+.kr-brand .text-sky-700 { color: rgb(6 104 190 / 1); }
+.kr-brand .text-sky-800 { color: rgb(6 104 190 / 1); }
+.kr-brand .text-slate-300 { color: rgb(255 255 255 / 0.8); }
+.kr-brand .text-slate-500 { color: rgb(74 95 126 / 1); }
+.kr-brand .text-slate-600 { color: rgb(74 95 126 / 1); }
+.kr-brand .text-slate-700 { color: rgb(16 43 80 / 1); }
+.kr-brand .text-violet-700 { color: rgb(11 110 140 / 1); }
+.kr-brand .to-blue-50\/50 { --tw-gradient-to: rgb(234 244 255 / 0.35) var(--tw-gradient-to-position); }
+.kr-brand .to-blue-600 { --tw-gradient-to: rgb(8 127 229 / 1) var(--tw-gradient-to-position); }
+.kr-brand .to-sky-50\/50 { --tw-gradient-to: rgb(234 244 255 / 0.5) var(--tw-gradient-to-position); }
+.kr-brand .to-slate-50 { --tw-gradient-to: rgb(255 255 255 / 1) var(--tw-gradient-to-position); }
+.kr-brand .via-blue-50 { --tw-gradient-to: rgb(234 244 255 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(234 244 255 / 0.7) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+
+/* Analys: inline-färger i kategorilistan */
+.kr-brand [style*="background-color: rgba(2, 132, 199"] { background-color: rgb(var(--kr-blue-rgb) / 0.1) !important; }
+.kr-brand [style*="background-color: rgb(2, 132, 199)"] { background-color: var(--kr-blue) !important; }
+.kr-brand [style*="background-color: rgba(245, 158, 11"] { background-color: rgb(var(--kr-yellow-rgb) / 0.1) !important; }
+.kr-brand [style*="background-color: rgb(245, 158, 11)"] { background-color: var(--kr-yellow) !important; }
+.kr-brand [style*="background-color: rgba(16, 185, 129"] { background-color: rgb(var(--kr-teal-rgb) / 0.1) !important; }
+.kr-brand [style*="background-color: rgb(16, 185, 129)"] { background-color: var(--kr-teal) !important; }
+.kr-brand [style*="background-color: rgba(139, 92, 246"] { background-color: rgb(var(--kr-cyan-rgb) / 0.1) !important; }
+.kr-brand [style*="background-color: rgb(139, 92, 246)"] { background-color: var(--kr-cyan) !important; }
+.kr-brand [style*="background-color: rgba(239, 68, 68"] { background-color: rgb(var(--kr-navy-rgb) / 0.1) !important; }
+.kr-brand [style*="background-color: rgb(239, 68, 68)"] { background-color: var(--kr-navy) !important; }
+
+/* Diagramtext (förklaringar och etiketter) i läsbar mörk ton, AA-kontrast */
+.kr-brand .recharts-legend-item-text { color: hsl(var(--foreground)) !important; }
+.kr-brand text.recharts-pie-label-text,
+.kr-brand .recharts-pie-labels text { fill: hsl(var(--foreground)) !important; }
