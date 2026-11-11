@@ -29,3 +29,10 @@ dist-ssr
 /playwright/.cache/
 .last-run.json
 .dyad/
+
+# Simply-paketet och lokala hemligheter
+release/
+simply/api/_lib/config.php
+simply/api/_lib/counties.json
+simply/api/_data/*
+!simply/api/_data/.htaccess

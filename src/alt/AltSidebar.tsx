@@ -10,10 +10,12 @@ import {
   X,
   Radar,
   History,
+  UserRound,
 } from "lucide-react";
 import { useState } from "react";
 import { getProfiles } from "@/lib/storage";
 import { useSavedTenders } from "@/hooks/useSavedTenders";
+import { useAccount } from "@/hooks/useAccount";
 import { BrandLogo, RadarArcs } from "@/components/brand/BrandLogo";
 
 const navItems = [
@@ -29,6 +31,7 @@ const navItems = [
 const AltSidebar = () => {
   const [open, setOpen] = useState(false);
   const { count } = useSavedTenders();
+  const { account } = useAccount();
   const activeProfiles = getProfiles().filter((profile) => profile.active).length;
 
   return (
@@ -88,6 +91,20 @@ const AltSidebar = () => {
             <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               Konto
             </p>
+            <NavLink
+              to={account ? "/profil" : "/login"}
+              onClick={() => setOpen(false)}
+              className={({ isActive }) =>
+                `relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                  isActive
+                    ? "bg-kr-ice font-semibold text-primary before:absolute before:inset-y-2 before:left-0 before:w-1 before:rounded-full before:bg-kr-blue"
+                    : "text-foreground/75 hover:bg-kr-ice/60 hover:text-foreground"
+                }`
+              }
+            >
+              <UserRound size={18} />
+              {account ? "Min profil" : "Logga in"}
+            </NavLink>
             <NavLink
               to="/settings"
               onClick={() => setOpen(false)}

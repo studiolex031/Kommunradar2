@@ -105,6 +105,12 @@ export function toggleSaved(id: string): boolean {
   return current.has(id);
 }
 
+/** Ersätter hela listan (används när kontots sparade upphandlingar hämtas in). */
+export function setSavedIds(ids: string[]) {
+  localStorage.setItem(SAVED_KEY, JSON.stringify([...new Set(ids)]));
+  emit();
+}
+
 export function removeSaved(id: string) {
   localStorage.setItem(SAVED_KEY, JSON.stringify(getSavedIds().filter((item) => item !== id)));
   emit();

@@ -14,6 +14,9 @@ import AnalyticsPage from "./pages/Analytics";
 import AIInsightsPage from "./pages/AIInsights";
 import SettingsPage from "./pages/Settings";
 import MissedPage from "./pages/Missed";
+import LoginPage from "./pages/Login";
+import ProfilePage from "./pages/Profile";
+import AccountSync from "@/components/AccountSync";
 import NotFound from "./pages/NotFound";
 import { ALT_DESIGN_BASE } from "@/components/DesignSwitch";
 
@@ -28,6 +31,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <AccountSync />
       <Toaster />
       <Sonner />
       {isAltDesign ? (
@@ -46,6 +50,8 @@ const App = () => (
             <Route path="/analytics" element={<AnalyticsPage />} />
             <Route path="/ai-insights" element={<AIInsightsPage />} />
             <Route path="/missade" element={<MissedPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/profil" element={<ProfilePage />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

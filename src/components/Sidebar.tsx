@@ -10,10 +10,12 @@ import {
   X,
   Radar,
   History,
+  UserRound,
 } from "lucide-react";
 import { useState } from "react";
 import { getProfiles } from "@/lib/storage";
 import { useSavedTenders } from "@/hooks/useSavedTenders";
+import { useAccount } from "@/hooks/useAccount";
 
 const navItems = [
   { to: "/", label: "Översikt", icon: LayoutDashboard },
@@ -28,6 +30,7 @@ const navItems = [
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
   const { count } = useSavedTenders();
+  const { account } = useAccount();
   const activeProfiles = getProfiles().filter((profile) => profile.active).length;
 
   return (
@@ -82,6 +85,18 @@ const Sidebar = () => {
             <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               Konto
             </p>
+            <NavLink
+              to={account ? "/profil" : "/login"}
+              onClick={() => setOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
+                  isActive ? "bg-primary/10 text-primary" : "text-foreground/70 hover:bg-muted hover:text-foreground"
+                }`
+              }
+            >
+              <UserRound size={18} />
+              {account ? "Min profil" : "Logga in"}
+            </NavLink>
             <NavLink
               to="/settings"
               onClick={() => setOpen(false)}

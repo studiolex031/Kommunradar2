@@ -11,6 +11,8 @@ import AnalyticsPage from "@/pages/Analytics";
 import AIInsightsPage from "@/pages/AIInsights";
 import SettingsPage from "@/pages/Settings";
 import MissedPage from "@/pages/Missed";
+import LoginPage from "@/pages/Login";
+import ProfilePage from "@/pages/Profile";
 
 /**
  * Alternativ design på /alternativ/* – samma sidor, data och funktioner som
@@ -28,6 +30,8 @@ const AltApp = () => (
         <Route path="/analytics" element={<AnalyticsPage />} />
         <Route path="/ai-insights" element={<AIInsightsPage />} />
         <Route path="/missade" element={<MissedPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/profil" element={<ProfilePage />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="*" element={<AltNotFound />} />
       </Routes>

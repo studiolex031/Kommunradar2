@@ -1,0 +1,334 @@
+[
+  {
+    "id": "stockholm",
+    "name": "Stockholms län",
+    "nuts": "SE110",
+    "places": [
+      "stockholm",
+      "solna",
+      "sundbyberg",
+      "södertälje",
+      "nacka",
+      "huddinge",
+      "täby",
+      "järfälla",
+      "haninge",
+      "botkyrka",
+      "norrtälje",
+      "lidingö",
+      "sollentuna",
+      "upplands väsby",
+      "tyresö",
+      "värmdö",
+      "sigtuna"
+    ]
+  },
+  {
+    "id": "uppsala",
+    "name": "Uppsala län",
+    "nuts": "SE121",
+    "places": [
+      "uppsala",
+      "enköping",
+      "knivsta",
+      "tierp",
+      "östhammar",
+      "håbo",
+      "älvkarleby"
+    ]
+  },
+  {
+    "id": "sodermanland",
+    "name": "Södermanlands län",
+    "nuts": "SE122",
+    "places": [
+      "södermanland",
+      "sörmland",
+      "eskilstuna",
+      "nyköping",
+      "katrineholm",
+      "strängnäs",
+      "flen",
+      "oxelösund",
+      "trosa",
+      "gnesta"
+    ]
+  },
+  {
+    "id": "ostergotland",
+    "name": "Östergötlands län",
+    "nuts": "SE123",
+    "places": [
+      "östergötland",
+      "linköping",
+      "norrköping",
+      "motala",
+      "mjölby",
+      "finspång",
+      "söderköping",
+      "åtvidaberg"
+    ]
+  },
+  {
+    "id": "orebro",
+    "name": "Örebro län",
+    "nuts": "SE124",
+    "places": [
+      "örebro",
+      "karlskoga",
+      "kumla",
+      "lindesberg",
+      "hallsberg",
+      "askersund",
+      "nora",
+      "degerfors"
+    ]
+  },
+  {
+    "id": "vastmanland",
+    "name": "Västmanlands län",
+    "nuts": "SE125",
+    "places": [
+      "västmanland",
+      "västerås",
+      "köping",
+      "sala",
+      "fagersta",
+      "hallstahammar",
+      "arboga",
+      "surahammar"
+    ]
+  },
+  {
+    "id": "jonkoping",
+    "name": "Jönköpings län",
+    "nuts": "SE211",
+    "places": [
+      "jönköping",
+      "värnamo",
+      "nässjö",
+      "vetlanda",
+      "gislaved",
+      "tranås",
+      "eksjö",
+      "sävsjö",
+      "habo"
+    ]
+  },
+  {
+    "id": "kronoberg",
+    "name": "Kronobergs län",
+    "nuts": "SE212",
+    "places": [
+      "kronoberg",
+      "växjö",
+      "ljungby",
+      "älmhult",
+      "alvesta",
+      "markaryd",
+      "tingsryd"
+    ]
+  },
+  {
+    "id": "kalmar",
+    "name": "Kalmar län",
+    "nuts": "SE213",
+    "places": [
+      "kalmar",
+      "västervik",
+      "oskarshamn",
+      "nybro",
+      "vimmerby",
+      "borgholm",
+      "mörbylånga",
+      "hultsfred"
+    ]
+  },
+  {
+    "id": "gotland",
+    "name": "Gotlands län",
+    "nuts": "SE214",
+    "places": [
+      "gotland",
+      "visby"
+    ]
+  },
+  {
+    "id": "blekinge",
+    "name": "Blekinge län",
+    "nuts": "SE221",
+    "places": [
+      "blekinge",
+      "karlskrona",
+      "karlshamn",
+      "ronneby",
+      "sölvesborg",
+      "olofström"
+    ]
+  },
+  {
+    "id": "skane",
+    "name": "Skåne län",
+    "nuts": "SE224",
+    "places": [
+      "skåne",
+      "malmö",
+      "helsingborg",
+      "lund",
+      "kristianstad",
+      "landskrona",
+      "trelleborg",
+      "ängelholm",
+      "hässleholm",
+      "ystad",
+      "eslöv",
+      "höganäs",
+      "staffanstorp",
+      "lomma",
+      "vellinge"
+    ]
+  },
+  {
+    "id": "halland",
+    "name": "Hallands län",
+    "nuts": "SE231",
+    "places": [
+      "halland",
+      "halmstad",
+      "varberg",
+      "kungsbacka",
+      "falkenberg",
+      "laholm",
+      "hylte"
+    ]
+  },
+  {
+    "id": "vastra-gotaland",
+    "name": "Västra Götalands län",
+    "nuts": "SE232",
+    "places": [
+      "västra götaland",
+      "göteborg",
+      "borås",
+      "mölndal",
+      "trollhättan",
+      "uddevalla",
+      "skövde",
+      "kungälv",
+      "lerum",
+      "partille",
+      "alingsås",
+      "vänersborg",
+      "lidköping",
+      "falköping",
+      "mariestad",
+      "härryda",
+      "stenungsund"
+    ]
+  },
+  {
+    "id": "varmland",
+    "name": "Värmlands län",
+    "nuts": "SE311",
+    "places": [
+      "värmland",
+      "karlstad",
+      "arvika",
+      "kristinehamn",
+      "säffle",
+      "hammarö",
+      "sunne",
+      "torsby",
+      "filipstad"
+    ]
+  },
+  {
+    "id": "dalarna",
+    "name": "Dalarnas län",
+    "nuts": "SE312",
+    "places": [
+      "dalarna",
+      "falun",
+      "borlänge",
+      "ludvika",
+      "avesta",
+      "mora",
+      "leksand",
+      "hedemora",
+      "rättvik"
+    ]
+  },
+  {
+    "id": "gavleborg",
+    "name": "Gävleborgs län",
+    "nuts": "SE313",
+    "places": [
+      "gävleborg",
+      "gävle",
+      "sandviken",
+      "hudiksvall",
+      "bollnäs",
+      "söderhamn",
+      "ljusdal",
+      "ockelbo"
+    ]
+  },
+  {
+    "id": "vasternorrland",
+    "name": "Västernorrlands län",
+    "nuts": "SE321",
+    "places": [
+      "västernorrland",
+      "sundsvall",
+      "örnsköldsvik",
+      "härnösand",
+      "sollefteå",
+      "kramfors",
+      "timrå",
+      "ånge"
+    ]
+  },
+  {
+    "id": "jamtland",
+    "name": "Jämtlands län",
+    "nuts": "SE322",
+    "places": [
+      "jämtland",
+      "härjedalen",
+      "östersund",
+      "krokom",
+      "strömsund",
+      "åre"
+    ]
+  },
+  {
+    "id": "vasterbotten",
+    "name": "Västerbottens län",
+    "nuts": "SE331",
+    "places": [
+      "västerbotten",
+      "umeå",
+      "skellefteå",
+      "lycksele",
+      "vännäs",
+      "vilhelmina",
+      "storuman"
+    ]
+  },
+  {
+    "id": "norrbotten",
+    "name": "Norrbottens län",
+    "nuts": "SE332",
+    "places": [
+      "norrbotten",
+      "luleå",
+      "piteå",
+      "boden",
+      "kiruna",
+      "gällivare",
+      "kalix",
+      "haparanda",
+      "älvsbyn"
+    ]
+  }
+]
