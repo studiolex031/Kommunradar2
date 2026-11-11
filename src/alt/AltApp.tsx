@@ -10,6 +10,7 @@ import WatchlistPage from "@/pages/Watchlist";
 import AnalyticsPage from "@/pages/Analytics";
 import AIInsightsPage from "@/pages/AIInsights";
 import SettingsPage from "@/pages/Settings";
+import MissedPage from "@/pages/Missed";
 
 /**
  * Alternativ design på /alternativ/* – samma sidor, data och funktioner som
@@ -26,6 +27,7 @@ const AltApp = () => (
         <Route path="/watchlist" element={<WatchlistPage />} />
         <Route path="/analytics" element={<AnalyticsPage />} />
         <Route path="/ai-insights" element={<AIInsightsPage />} />
+        <Route path="/missade" element={<MissedPage />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="*" element={<AltNotFound />} />
       </Routes>
