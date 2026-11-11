@@ -42,7 +42,7 @@ const CITY_MAP: Record<string, { id: string; name: string; region: string }> = {
   kalmar: { id: "kalmar", name: "Kalmar", region: "Kalmar län" },
 };
 
-function pickString(value: unknown): string {
+export function pickString(value: unknown): string {
   if (typeof value === "string") return value;
   if (Array.isArray(value)) return pickString(value[0]);
   if (value && typeof value === "object") {
@@ -52,7 +52,7 @@ function pickString(value: unknown): string {
   return "";
 }
 
-function pickNumber(value: unknown): number {
+export function pickNumber(value: unknown): number {
   if (typeof value === "number" && Number.isFinite(value)) return value;
   if (typeof value === "string") {
     const parsed = Number(value.replace(/\s/g, "").replace(",", "."));
@@ -65,7 +65,7 @@ function pickNumber(value: unknown): number {
   return 0;
 }
 
-function categoryFromCpv(cpv: string): string {
+export function categoryFromCpv(cpv: string): string {
   const code = cpv.slice(0, 2);
   if (["48", "72", "30", "32", "64"].includes(code)) return "IT & Digitalisering";
   if (["45", "71", "44"].includes(code)) return "Bygg & Fastighet";
