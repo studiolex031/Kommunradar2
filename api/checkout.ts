@@ -5,13 +5,17 @@ const RATE_WINDOW_MS = 60_000;
 const RATE_LIMIT = 10;
 const requestsByIp = new Map<string, number[]>();
 
-const ALLOWED_COUNTIES = new Set([
-  "Hela Sverige",
-  "Blekinge", "Dalarna", "Gotland", "Gävleborg", "Halland", "Jämtland",
-  "Jönköping", "Kalmar", "Kronoberg", "Norrbotten", "Skåne", "Stockholm",
-  "Södermanland", "Uppsala", "Värmland", "Västerbotten", "Västernorrland",
-  "Västmanland", "Västra Götaland", "Örebro", "Östergötland",
-]);
+const REGION_KEYS: Record<string, string> = {
+  "Hela Sverige": "alla",
+  "Blekinge": "blekinge", "Dalarna": "dalarna", "Gotland": "gotland",
+  "Gävleborg": "gavleborg", "Halland": "halland", "Jämtland": "jamtland",
+  "Jönköping": "jonkoping", "Kalmar": "kalmar", "Kronoberg": "kronoberg",
+  "Norrbotten": "norrbotten", "Skåne": "skane", "Stockholm": "stockholm",
+  "Södermanland": "sodermanland", "Uppsala": "uppsala", "Värmland": "varmland",
+  "Västerbotten": "vasterbotten", "Västernorrland": "vasternorrland",
+  "Västmanland": "vastmanland", "Västra Götaland": "vastragotaland",
+  "Örebro": "orebro", "Östergötland": "ostergotland",
+};
 
 function getAllowedOrigins(): Set<string> {
   const configured = process.env.CHECKOUT_ALLOWED_ORIGINS
@@ -127,7 +131,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return sendJson(res, 400, { error: "Ange ett bevakningsord på högst 120 tecken." });
   }
 
-  if (!ALLOWED_COUNTIES.has(lan)) {
+  const lanKey = REGION_KEYS[lan];
+  if (!lanKey) {
     return sendJson(res, 400, { error: "Välj ett giltigt svenskt län." });
   }
 
@@ -154,12 +159,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   form.set("cancel_url", cancelUrl);
   form.set("client_reference_id", idempotencyId);
   form.set("metadata[plan]", "kommunradar_pro_monthly");
-  form.set("metadata[bevakningsord]", bevakningsord);
-  form.set("metadata[lan]", lan);
+  form.set("metadata[keywords]", bevakningsord);
+  form.set("metadata[lan]", lanKey);
   form.set("subscription_data[trial_period_days]", "7");
   form.set("subscription_data[metadata][plan]", "kommunradar_pro_monthly");
-  form.set("subscription_data[metadata][bevakningsord]", bevakningsord);
-  form.set("subscription_data[metadata][lan]", lan);
+  form.set("subscription_data[metadata][keywords]", bevakningsord);
+  form.set("subscription_data[metadata][lan]", lanKey);
 
   try {
     // Verify the server-configured Price before creating a session. This prevents
