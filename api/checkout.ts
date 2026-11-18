@@ -97,6 +97,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return sendJson(res, 503, { error: "Checkout-konfigurationen är ogiltig." });
   }
 
+  const redirectUrls = [successUrl, cancelUrl].map((value) => {
+    try {
+      return new URL(value);
+    } catch {
+      return null;
+    }
+  });
+  if (
+    redirectUrls.some((url) =>
+      !url ||
+      url.protocol !== "https:" ||
+      !allowedOrigins.has(url.origin) ||
+      Boolean(url.username || url.password)
+    )
+  ) {
+    return sendJson(res, 503, { error: "Checkoutens returadresser är inte godkända." });
+  }
+
   const ip = getClientIp(req);
   if (isRateLimited(ip)) {
     return sendJson(res, 429, { error: "För många försök. Vänta en minut och försök igen." });
@@ -115,9 +133,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return sendJson(res, 400, { error: "Välj ett giltigt svenskt län." });
   }
 
-  const idempotencyId = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(requestId)
-    ? requestId
-    : randomUUID();
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(requestId)) {
+    return sendJson(res, 400, { error: "Checkoutförsöket saknar ett giltigt ID. Försök igen." });
+  }
+  const idempotencyId = requestId;
 
   const form = new URLSearchParams();
   form.set("mode", "subscription");
@@ -143,6 +162,33 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   form.set("subscription_data[metadata][lan]", lan);
 
   try {
+    // Verify the server-configured Price before creating a session. This prevents
+    // an accidental wrong-mode, inactive, or incorrectly priced plan from charging.
+    const priceResponse = await fetch(`https://api.stripe.com/v1/prices/${priceId}`, {
+      headers: { Authorization: `Bearer ${secretKey}` },
+    });
+    if (!priceResponse.ok) {
+      return sendJson(res, 503, { error: "Den valda abonnemangsplanen kunde inte verifieras." });
+    }
+    const price = await priceResponse.json() as {
+      active?: boolean;
+      currency?: string;
+      unit_amount?: number | null;
+      livemode?: boolean;
+      recurring?: { interval?: string; interval_count?: number } | null;
+    };
+    const keyIsLive = secretKey.startsWith("sk_live_");
+    if (
+      price.active !== true ||
+      price.currency !== "sek" ||
+      price.unit_amount !== 99000 ||
+      price.livemode !== keyIsLive ||
+      price.recurring?.interval !== "month" ||
+      (price.recurring?.interval_count ?? 1) !== 1
+    ) {
+      return sendJson(res, 503, { error: "Abonnemangsplanen matchar inte Kommunradars godkända pris." });
+    }
+
     const stripeResponse = await fetch(STRIPE_API, {
       method: "POST",
       headers: {
