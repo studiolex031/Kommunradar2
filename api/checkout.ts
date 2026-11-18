@@ -151,6 +151,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   form.append("payment_method_types[]", "link");
   form.set("billing_address_collection", "required");
   form.set("consent_collection[terms_of_service]", "required");
+  form.set("consent_collection[promotions]", "none");
+  form.set("allow_promotion_codes", "true");
   form.set("tax_id_collection[enabled]", "true");
   form.set("tax_id_collection[required]", "never");
   form.set("locale", "sv");
@@ -162,6 +164,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   form.set("metadata[keywords]", bevakningsord);
   form.set("metadata[lan]", lanKey);
   form.set("subscription_data[trial_period_days]", "7");
+  form.set("subscription_data[trial_settings][end_behavior][missing_payment_method]", "create_invoice");
   form.set("subscription_data[metadata][plan]", "kommunradar_pro_monthly");
   form.set("subscription_data[metadata][keywords]", bevakningsord);
   form.set("subscription_data[metadata][lan]", lanKey);
@@ -181,6 +184,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       unit_amount?: number | null;
       livemode?: boolean;
       recurring?: { interval?: string; interval_count?: number } | null;
+      tax_behavior?: string;
     };
     const keyIsLive = secretKey.startsWith("sk_live_");
     if (
@@ -189,6 +193,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       price.unit_amount !== 99000 ||
       price.livemode !== keyIsLive ||
       price.recurring?.interval !== "month" ||
+      price.tax_behavior !== "exclusive" ||
       (price.recurring?.interval_count ?? 1) !== 1
     ) {
       return sendJson(res, 503, { error: "Abonnemangsplanen matchar inte Kommunradars godkända pris." });
