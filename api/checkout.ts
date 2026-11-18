@@ -6,12 +6,11 @@ const RATE_LIMIT = 10;
 const requestsByIp = new Map<string, number[]>();
 
 const ALLOWED_COUNTIES = new Set([
-  "Blekinge län", "Dalarnas län", "Gotlands län", "Gävleborgs län",
-  "Hallands län", "Jämtlands län", "Jönköpings län", "Kalmar län",
-  "Kronobergs län", "Norrbottens län", "Skåne län", "Stockholms län",
-  "Södermanlands län", "Uppsala län", "Värmlands län", "Västerbottens län",
-  "Västernorrlands län", "Västmanlands län", "Västra Götalands län",
-  "Örebro län", "Östergötlands län",
+  "Hela Sverige",
+  "Blekinge", "Dalarna", "Gotland", "Gävleborg", "Halland", "Jämtland",
+  "Jönköping", "Kalmar", "Kronoberg", "Norrbotten", "Skåne", "Stockholm",
+  "Södermanland", "Uppsala", "Värmland", "Västerbotten", "Västernorrland",
+  "Västmanland", "Västra Götaland", "Örebro", "Östergötland",
 ]);
 
 function getAllowedOrigins(): Set<string> {
