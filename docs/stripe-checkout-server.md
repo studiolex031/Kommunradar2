@@ -33,13 +33,14 @@ The browser must navigate to `checkoutUrl`. Never call Stripe directly from the 
 
 ## Stripe behavior retained
 
-The endpoint creates a hosted Checkout Session using a server-configured, fixed recurring Price ID. Before creating a session, it retrieves that Price from Stripe and refuses to proceed unless it is active, SEK 99000 minor units (990 SEK), monthly, and in the same test/live mode as the configured secret key:
+The endpoint creates a hosted Checkout Session using a server-configured, fixed recurring Price ID. Before creating a session, it retrieves that Price from Stripe and refuses to proceed unless it is active, SEK 99000 minor units (990 SEK), monthly, tax-exclusive, and in the same test/live mode as the configured secret key:
 
 - Subscription mode.
 - One Pro monthly recurring line item.
-- Seven-day trial.
-- Payment method collected at signup; card and Link are the only allowed methods, matching the current Payment Link.
+- Seven-day trial; trial-end behavior when no payment method exists remains `create_invoice`, matching the current Payment Link.
+- Payment method collected at signup; Stripe's account-level dynamic payment-method selection is retained, matching the current Payment Link.
 - Billing address required.
+- Promotion codes enabled; promotional email consent remains disabled, matching the current Payment Link.
 - Terms of service acceptance required (Stripe account must have a valid terms URL configured).
 - Tax ID collection enabled but optional.
 - Swedish Checkout locale.
