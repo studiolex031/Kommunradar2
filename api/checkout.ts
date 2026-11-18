@@ -142,6 +142,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   form.set("line_items[0][price]", priceId);
   form.set("line_items[0][quantity]", "1");
   form.set("payment_method_collection", "always");
+  form.append("allowed_payment_method_types[]", "card");
+  form.append("allowed_payment_method_types[]", "link");
   form.set("billing_address_collection", "required");
   form.set("consent_collection[terms_of_service]", "required");
   form.set("tax_id_collection[enabled]", "true");
