@@ -15,7 +15,7 @@ Request JSON:
 ```json
 {
   "bevakningsord": "markarbete",
-  "lan": "Västra Götalands län",
+  "lan": "Västra Götaland",
   "checkoutRequestId": "a valid UUID generated once per checkout attempt"
 }
 ```
@@ -88,7 +88,7 @@ Replace `YOUR_VERIFIED_API_ORIGIN` only after deployment and domain verification
 ## Security and operational notes
 
 - Exact-origin CORS allowlist; POST and OPTIONS only.
-- Strict field validation and Swedish county allowlist.
+- Strict field validation and a county/region allowlist matching the public site's region values, plus the 'Hela Sverige' option.
 - Client cannot set price, quantity, trial, Stripe mode, redirect URLs, or metadata keys outside the server's fixed schema.
 - Stripe secret is read only from server environment variables.
 - Stripe error bodies and submitted search terms are not written to logs or returned to the browser.
