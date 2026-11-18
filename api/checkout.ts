@@ -1,5 +1,4 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { randomUUID } from "node:crypto";
 
 const STRIPE_API = "https://api.stripe.com/v1/checkout/sessions";
 const RATE_WINDOW_MS = 60_000;
