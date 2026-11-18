@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { fetchTedTenders } from "../server/ted";
+import { fetchTedTenders } from "../server/ted.js";
 
 export default async function handler(_req: VercelRequest, res: VercelResponse) {
   try {
