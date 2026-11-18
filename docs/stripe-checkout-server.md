@@ -33,7 +33,7 @@ The browser must navigate to `checkoutUrl`. Never call Stripe directly from the 
 
 ## Stripe behavior retained
 
-The endpoint creates a hosted Checkout Session using a server-configured, fixed recurring Price ID:
+The endpoint creates a hosted Checkout Session using a server-configured, fixed recurring Price ID. Before creating a session, it retrieves that Price from Stripe and refuses to proceed unless it is active, SEK 99000 minor units (990 SEK), monthly, and in the same test/live mode as the configured secret key:
 
 - Subscription mode.
 - One Pro monthly recurring line item.
@@ -92,7 +92,8 @@ Replace `YOUR_VERIFIED_API_ORIGIN` only after deployment and domain verification
 - Client cannot set price, quantity, trial, Stripe mode, redirect URLs, or metadata keys outside the server's fixed schema.
 - Stripe secret is read only from server environment variables.
 - Stripe error bodies and submitted search terms are not written to logs or returned to the browser.
-- Stripe idempotency key is derived from the checkout request UUID.
+- A valid UUID is required from the client for each checkout attempt; Stripe's idempotency key is derived from that UUID. Generate a new UUID when the customer changes the search or starts a new attempt.
+- Success and cancel URLs must use HTTPS and an origin in the configured allowlist.
 - A small in-memory per-IP request limiter is included as a best-effort guard. It is not a distributed rate limiter and must not be treated as strong abuse protection across serverless instances.
 - This endpoint only creates Checkout Sessions. It does not grant paid access. A separate signed Stripe webhook must verify `checkout.session.completed` and subscription lifecycle events before provisioning, extending, or revoking access.
 - No live Stripe setting, Payment Link, price, customer, subscription, payment, production domain, environment variable, or deployment was changed by this implementation.
