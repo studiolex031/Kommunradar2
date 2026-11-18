@@ -43,7 +43,7 @@ The endpoint creates a hosted Checkout Session using a server-configured, fixed 
 - Terms of service acceptance required (Stripe account must have a valid terms URL configured).
 - Tax ID collection enabled but optional.
 - Swedish Checkout locale.
-- Bevakningsord and län copied to both Checkout Session metadata and the resulting Subscription metadata.
+- Bevakningsord and region are mapped to the existing digest schema and copied to both Checkout Session and Subscription metadata: `keywords` contains the entered search terms; `lan` contains the canonical key expected by `digest.py` (for example `vastragotaland`, or `alla`). This lets the existing daily digest discover active/trialing subscriptions directly from Stripe without a separate customer database.
 - The client cannot choose a Price ID, amount, currency, trial length, success URL, or cancel URL.
 
 The current live monthly Pro Price read from Stripe was `price_1UWuJMC7YfJBxRnAPVVy2dLT` (990 SEK/month). The endpoint intentionally does not hard-code this live ID: configure the matching Price ID separately for test and production environments. Never pair a live Price ID with a test secret key or vice versa.
@@ -95,7 +95,7 @@ Replace `YOUR_VERIFIED_API_ORIGIN` only after deployment and domain verification
 - A valid UUID is required from the client for each checkout attempt; Stripe's idempotency key is derived from that UUID. Generate a new UUID when the customer changes the search or starts a new attempt.
 - Success and cancel URLs must use HTTPS and an origin in the configured allowlist.
 - A small in-memory per-IP request limiter is included as a best-effort guard. It is not a distributed rate limiter and must not be treated as strong abuse protection across serverless instances.
-- This endpoint only creates Checkout Sessions. It does not grant paid access. A separate signed Stripe webhook must verify `checkout.session.completed` and subscription lifecycle events before provisioning, extending, or revoking access.
+- This endpoint only creates Checkout Sessions. The current email-digest workflow reads active/trialing subscriptions and their metadata directly from Stripe, so a webhook is not required for that existing email delivery path. If a separate gated web product is later introduced, access must be provisioned and revoked from verified Stripe subscription lifecycle events, never from the success redirect alone.
 - No live Stripe setting, Payment Link, price, customer, subscription, payment, production domain, environment variable, or deployment was changed by this implementation.
 
 ## Acceptance tests before production
@@ -103,8 +103,8 @@ Replace `YOUR_VERIFIED_API_ORIGIN` only after deployment and domain verification
 1. Preview uses a Stripe test secret and a test-mode Price ID.
 2. Valid Swedish search values create a test Checkout Session and redirect to Stripe.
 3. Stripe shows 0 SEK today, card/payment method collection, required billing address and terms, then 990 SEK/month after seven days.
-4. Checkout Session and Subscription metadata contain the exact entered bevakningsord and län.
+4. Checkout Session and Subscription metadata contain `keywords` with the entered search phrase and `lan` with the canonical key used by `digest.py`; the daily digest recognizes the subscription and selects the correct region.
 5. Invalid län, blank/oversized search term, wrong origin, missing config, non-POST, and repeated rate-limited requests fail safely.
 6. Cancel returns to the verified pricing page.
-7. Success page does not grant access by itself; webhook verification is tested independently.
+7. The success page is not used as proof of payment. Verify that the existing digest reads the resulting active/trialing Stripe subscription and metadata; if a separate gated product is used, test its signed webhook flow independently.
 8. Only after all tests pass should the owner approve production env configuration, domain routing, and deployment.
