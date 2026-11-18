@@ -38,7 +38,7 @@ The endpoint creates a hosted Checkout Session using a server-configured, fixed 
 - Subscription mode.
 - One Pro monthly recurring line item.
 - Seven-day trial.
-- Payment method collected at signup.
+- Payment method collected at signup; card and Link are the only allowed methods, matching the current Payment Link.
 - Billing address required.
 - Terms of service acceptance required (Stripe account must have a valid terms URL configured).
 - Tax ID collection enabled but optional.
