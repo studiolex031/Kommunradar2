@@ -6,8 +6,19 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import FilterPanel, { type FilterState } from "@/components/FilterPanel";
 import { TenderCard } from "@/components/TenderCard";
-import { getMunicipality } from "@/data/demoData";
+import { getMunicipality, regions } from "@/data/demoData";
 import { useTenders } from "@/hooks/useTenders";
+
+// Matchar ?lan= från demoformuläret på kommunradar.online ("Jönköping" -> "Jönköpings län")
+const normalizeRegion = (value: string) =>
+  value.toLowerCase().replace(/\s*län$/, "").replace(/s$/, "").trim();
+
+const regionFromParam = (lan: string | null): string[] => {
+  if (!lan || lan === "Hela Sverige") return [];
+  const wanted = normalizeRegion(lan);
+  const match = regions.find((region) => normalizeRegion(region) === wanted);
+  return match ? [match] : [];
+};
 
 const SearchPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -16,7 +27,7 @@ const SearchPage = () => {
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") ?? "");
   const [filters, setFilters] = useState<FilterState>({
     category: [],
-    region: [],
+    region: regionFromParam(searchParams.get("lan")),
     minValue: 0,
     status: ["open", "closing-soon"],
   });
@@ -24,15 +35,23 @@ const SearchPage = () => {
   const [viewMode, setViewMode] = useState<"list" | "grid">("grid");
 
   const filteredTenders = useMemo(() => {
-    const query = searchQuery.toLowerCase();
+    // Kommaseparerade sökord (t.ex. "städ, IT-konsult") matchar om något av dem träffar
+    const terms = searchQuery
+      .toLowerCase()
+      .split(",")
+      .map((term) => term.trim())
+      .filter(Boolean);
     return tenders.filter((tender) => {
       const municipality = getMunicipality(tender.municipalityId);
       const matchesQuery =
-        !query ||
-        tender.title.toLowerCase().includes(query) ||
-        tender.summary.toLowerCase().includes(query) ||
-        tender.keywords.some((keyword) => keyword.toLowerCase().includes(query)) ||
-        municipality?.name.toLowerCase().includes(query);
+        terms.length === 0 ||
+        terms.some(
+          (query) =>
+            tender.title.toLowerCase().includes(query) ||
+            tender.summary.toLowerCase().includes(query) ||
+            tender.keywords.some((keyword) => keyword.toLowerCase().includes(query)) ||
+            municipality?.name.toLowerCase().includes(query),
+        );
       const matchesMunicipality = !municipalityId || tender.municipalityId === municipalityId;
       const matchesCategory = filters.category.length === 0 || filters.category.includes(tender.category);
       const matchesRegion = filters.region.length === 0 || filters.region.includes(municipality?.region || "");
