@@ -9,6 +9,7 @@ import {
   Menu,
   X,
   Radar,
+  History,
 } from "lucide-react";
 import { useState } from "react";
 import { getProfiles } from "@/lib/storage";
@@ -21,6 +22,7 @@ const navItems = [
   { to: "/watchlist", label: "Bevakningar", icon: Bell },
   { to: "/analytics", label: "Analyser", icon: BarChart3 },
   { to: "/ai-insights", label: "Insikter", icon: Radar },
+  { to: "/missade", label: "Missade uppdrag", icon: History },
 ];
 
 const Sidebar = () => {

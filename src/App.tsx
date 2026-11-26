@@ -13,6 +13,7 @@ import WatchlistPage from "./pages/Watchlist";
 import AnalyticsPage from "./pages/Analytics";
 import AIInsightsPage from "./pages/AIInsights";
 import SettingsPage from "./pages/Settings";
+import MissedPage from "./pages/Missed";
 import NotFound from "./pages/NotFound";
 import { ALT_DESIGN_BASE } from "@/components/DesignSwitch";
 
@@ -44,6 +45,7 @@ const App = () => (
             <Route path="/watchlist" element={<WatchlistPage />} />
             <Route path="/analytics" element={<AnalyticsPage />} />
             <Route path="/ai-insights" element={<AIInsightsPage />} />
+            <Route path="/missade" element={<MissedPage />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
